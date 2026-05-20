@@ -12,8 +12,20 @@
             <RowDefinition Height="3*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        
         <Label Grid.Row="0" x:Name="lblPenz" Content="Pénz:"></Label>
         <Label Grid.Row="1" x:Name="lblEredmeny" Content=""></Label>
-        <Button Width="200" Height="50"  Grid.Row="3" Click="Button_Click" Content="Pörget"></Button>
+        <Grid x:Name="tarcsa" Width="400" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            
+
+
+        </Grid>
+        <Button Width="200" Height="50" Grid.Row="3" Click="Button_Click" Content="Pörget"></Button>
     </Grid>
 </Window>

@@ -21,6 +21,8 @@ namespace felkaru_rablo
 
         string[] szimbulomok = {"Cseresznye", "Banán", "Barack", "Dinnye"};
         int cellakSzama = 3;
+        int elemekSzama = 100;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -43,6 +45,33 @@ namespace felkaru_rablo
             lblEredmeny.Content = string.Join(";", eredmenyek) + " - " + Ellenoriz(eredmenyek);
         }
 
+        public void PorgetAnimacio()
+        {
+            for (int i = 0; i < elemekSzama; i++)
+            {
+                RowDefinition r1 = new RowDefinition();
+                r1.Height = new GridLength(100, GridUnitType.Pixel);
+
+                tarcsa.RowDefinitions.Add(r1);
+            }
+
+
+            for (int j = 0; j < elemekSzama; j++)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    Image kep = new Image();
+                    ImageSourceConverter img_source = new ImageSourceConverter();
+                    kep.Source = (ImageSource)img_source.ConvertFromString("../../../fruits/banan.png");
+
+                    Grid.SetColumn(kep, j);
+                    Grid.SetRow(kep, i);
+                    tarcsa.Children.Add(kep);
+
+                }
+            }
+        }
+
         public int Ellenoriz(string[] eredmenyek)
         {
             foreach (string element in eredmenyek)
@@ -57,6 +86,7 @@ namespace felkaru_rablo
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Porget();
+            PorgetAnimacio();
         }
     }
 }
