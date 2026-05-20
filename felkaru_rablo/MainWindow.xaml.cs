@@ -21,7 +21,7 @@ namespace felkaru_rablo
 
         string[] szimbulomok = {"Cseresznye", "Banan", "Barack", "Dinnye"};
         int cellakSzama = 3;
-        int elemekSzama = 25;
+        int elemekSzama = 100;
 
         public MainWindow()
         {
@@ -45,7 +45,7 @@ namespace felkaru_rablo
             lblEredmeny.Content = string.Join(";", eredmenyek) + " - " + Ellenoriz(eredmenyek);
         }
 
-        public void PorgetAnimacio()
+        public void TarcsaSetup()
         {
             tarcsa.RowDefinitions.Clear();
             tarcsa.Children.Clear();
@@ -74,6 +74,18 @@ namespace felkaru_rablo
             }
         }
 
+        public async void PorgetAnimacio()
+        {
+            Canvas.SetBottom(tarcsa, 0);
+            while (true)
+            {
+                double bottom = Canvas.GetBottom(tarcsa);
+                bottom -= 5;
+                Canvas.SetBottom(tarcsa, bottom);
+                await Task.Delay(10);
+            }
+        }
+
         public int Ellenoriz(string[] eredmenyek)
         {
             foreach (string element in eredmenyek)
@@ -88,6 +100,7 @@ namespace felkaru_rablo
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Porget();
+            TarcsaSetup();
             PorgetAnimacio();
         }
     }
