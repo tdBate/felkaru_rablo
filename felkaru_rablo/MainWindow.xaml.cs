@@ -19,9 +19,9 @@ namespace felkaru_rablo
     {
         Random rnd = new Random();
 
-        string[] szimbulomok = {"Cseresznye", "Banán", "Barack", "Dinnye"};
+        string[] szimbulomok = {"Cseresznye", "Banan", "Barack", "Dinnye"};
         int cellakSzama = 3;
-        int elemekSzama = 100;
+        int elemekSzama = 25;
 
         public MainWindow()
         {
@@ -47,6 +47,8 @@ namespace felkaru_rablo
 
         public void PorgetAnimacio()
         {
+            tarcsa.RowDefinitions.Clear();
+            tarcsa.Children.Clear();
             for (int i = 0; i < elemekSzama; i++)
             {
                 RowDefinition r1 = new RowDefinition();
@@ -62,10 +64,10 @@ namespace felkaru_rablo
                 {
                     Image kep = new Image();
                     ImageSourceConverter img_source = new ImageSourceConverter();
-                    kep.Source = (ImageSource)img_source.ConvertFromString("../../../fruits/banan.png");
+                    kep.Source = (ImageSource)img_source.ConvertFromString($"../../../fruits/{RandomGyumolcs().ToLower()}.png");
 
-                    Grid.SetColumn(kep, j);
-                    Grid.SetRow(kep, i);
+                    Grid.SetColumn(kep, i);
+                    Grid.SetRow(kep, j);
                     tarcsa.Children.Add(kep);
 
                 }
