@@ -7,6 +7,13 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" x:Name="lblPenz" Content="Pénz:"></Label>
+        <Label Grid.Row="1" x:Name="lblEredmeny" Content=""></Label>
+        <Button Width="200" Height="50"  Grid.Row="3" Click="Button_Click" Content="Pörget"></Button>
     </Grid>
 </Window>

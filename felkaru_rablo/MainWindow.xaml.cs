@@ -40,7 +40,7 @@ namespace felkaru_rablo
                 eredmenyek[i] = RandomGyumolcs();
             }
             Ellenoriz(eredmenyek);
-            Debug.WriteLine(string.Join(";", eredmenyek) + " - " + Ellenoriz(eredmenyek));
+            lblEredmeny.Content = string.Join(";", eredmenyek) + " - " + Ellenoriz(eredmenyek);
         }
 
         public int Ellenoriz(string[] eredmenyek)
@@ -52,6 +52,11 @@ namespace felkaru_rablo
                 else if (count == 3) { return 50; }
             }
             return 0;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Porget();
         }
     }
 }
