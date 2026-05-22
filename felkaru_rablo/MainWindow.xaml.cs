@@ -19,15 +19,14 @@ namespace felkaru_rablo
     public partial class MainWindow : Window
     {
         Random rnd = new Random();
-        DispatcherTimer timer;
         
-        
-
         string[] szimbulomok = {"Cseresznye", "Banan", "Barack", "Dinnye"};
         int cellakSzama = 3;
         int elemekSzama = 50;
         int nyertesIndex;
         bool porges = true;
+        string[] eredmenyek;
+        int penz = 0;
 
         public MainWindow()
         {
@@ -55,6 +54,8 @@ namespace felkaru_rablo
         public void TarcsaSetup()
         {
             nyertesIndex = rnd.Next(10, elemekSzama);
+            eredmenyek = new string[cellakSzama];
+
             tarcsa.RowDefinitions.Clear();
             tarcsa.Children.Clear();
             for (int i = 0; i < elemekSzama; i++)
@@ -65,7 +66,7 @@ namespace felkaru_rablo
                 tarcsa.RowDefinitions.Add(r1);
             }
 
-            string[] eredmenyek = new string[cellakSzama];
+            
             for (int j = 0; j < elemekSzama; j++)
             {
                 for (int i = 0; i < 3; i++)
@@ -84,6 +85,8 @@ namespace felkaru_rablo
                     Grid.SetRow(kep, j);
                     tarcsa.Children.Add(kep);
 
+                    Canvas.SetLeft(tarcsa, this.Width / 2-tarcsa.Width/2);
+
                 }
             }
 
@@ -93,10 +96,6 @@ namespace felkaru_rablo
         public async void PorgetAnimacio()
         {
             porges = true;
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(3);
-            //timer.Tick += (object sender, EventArgs e) => { porges = false;};
-            timer.Start();
 
             Canvas.SetBottom(tarcsa, 0);
             while (porges)
@@ -111,10 +110,11 @@ namespace felkaru_rablo
                 }
                 await Task.Delay(10);
             }
+            PenzHozzaad(Ellenoriz());
         }
 
 
-        public int Ellenoriz(string[] eredmenyek)
+        public int Ellenoriz()
         {
             foreach (string element in eredmenyek)
             {
@@ -123,6 +123,13 @@ namespace felkaru_rablo
                 else if (count == 3) { return 50; }
             }
             return 0;
+        }
+
+        public void PenzHozzaad(int osszeg)
+        {
+            penz += osszeg;   
+
+            lblPenz.Content = "Pénz: "+penz;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

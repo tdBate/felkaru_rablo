@@ -13,7 +13,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         
-        <Label Grid.Row="0" x:Name="lblPenz" Content="Pénz:"></Label>
+        <Label Grid.Row="0" x:Name="lblPenz" Content="Pénz: 0" FontSize="36" FontWeight="Bold"></Label>
         <Label Grid.Row="1" x:Name="lblEredmeny" Content=""></Label>
         <Canvas Grid.Row="1" x:Name="canvas" ClipToBounds="True">
         <Grid x:Name="tarcsa" Width="400">
