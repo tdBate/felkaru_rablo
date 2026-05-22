@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:felkaru_rablo"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Background="#FF393E46">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
@@ -13,10 +13,10 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         
-        <Label Grid.Row="0" x:Name="lblPenz" Content="Pénz: 0" FontSize="36" FontWeight="Bold"></Label>
+        <Label Grid.Row="0" x:Name="lblPenz" Content="Pénz: 0" FontSize="36" FontWeight="Bold" Foreground="White"></Label>
         <Label Grid.Row="1" x:Name="lblEredmeny" Content=""></Label>
         <Canvas Grid.Row="1" x:Name="canvas" ClipToBounds="True">
-        <Grid x:Name="tarcsa" Width="400">
+        <Grid x:Name="tarcsa" Width="400" Background="#FF222831">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -27,6 +27,6 @@
 
         </Grid>
         </Canvas>
-        <Button Width="200" Height="50" Grid.Row="3" Click="Button_Click" Content="Pörget"></Button>
+        <Button Width="200" Height="50" Grid.Row="3" Click="Button_Click" Content="Pörget" Background="#FF222831" BorderBrush="#FF00ADB5" Foreground="White"></Button>
     </Grid>
 </Window>
