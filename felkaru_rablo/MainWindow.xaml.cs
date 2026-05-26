@@ -21,6 +21,16 @@ namespace felkaru_rablo
         Random rnd = new Random();
         
         string[] szimbulomok = {"Cseresznye", "Banan", "Barack", "Dinnye"};
+
+        Dictionary<string, string> gyumolcsEmojik = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+        {
+            { "Cseresznye", "🍒" },
+            { "Banan",       "🍌" },
+            { "Barack",      "🍑" },
+            { "Dinnye",      "🍉" }
+        };
+
+
         int cellakSzama = 3;
         int elemekSzama = 50;
         int nyertesIndex;
@@ -71,10 +81,14 @@ namespace felkaru_rablo
             {
                 for (int i = 0; i < 3; i++)
                 {
-                    Image kep = new Image();
-                    ImageSourceConverter img_source = new ImageSourceConverter();
                     string gyumolcs = RandomGyumolcs();
-                    kep.Source = (ImageSource)img_source.ConvertFromString($"../../../fruits/{gyumolcs.ToLower()+""}.png");
+
+                    Label kep = new Label();
+                    kep.FontFamily = new FontFamily("Segoe UI Emoji");
+                    kep.Foreground = Brushes.White;
+                    kep.Content = gyumolcsEmojik[gyumolcs];
+                    kep.FontSize = 50;
+                    kep.HorizontalAlignment = HorizontalAlignment.Center;
 
                     if (j == elemekSzama-nyertesIndex)
                     {
