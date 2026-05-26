@@ -63,19 +63,6 @@ namespace felkaru_rablo
             return szimbulomok[rnd.Next(0, szimbulomok.Length)];
         }
 
-        /*public void Porget()
-        {
-            
-
-            
-            for (int i = 0; i < cellakSzama; i++)
-            {
-                eredmenyek[i] = RandomGyumolcs();
-            }
-            Ellenoriz(eredmenyek);
-            lblEredmeny.Content = string.Join(";", eredmenyek) + " - " + Ellenoriz(eredmenyek);
-        }*/
-
         public void TarcsaSetup()
         {
             btnPorget.Click -= Button_Click;
