@@ -14,7 +14,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         
-        <Label Grid.Row="0" x:Name="lblPenz" Content="Pénz: 0" FontSize="36" FontWeight="Bold" Foreground="White"></Label>
+        <Label Grid.Row="0" x:Name="lblPenz" Content="Pénz: 100" FontSize="36" FontWeight="Bold" Foreground="White"></Label>
         <Label Grid.Row="1" x:Name="lblEredmeny" Content=""></Label>
         <Canvas Grid.Row="1" x:Name="canvas" ClipToBounds="True">
         <Grid x:Name="tarcsa" Width="400" Background="#FF222831">
@@ -28,6 +28,6 @@
 
         </Grid>
         </Canvas>
-        <Button Width="200" Height="50" Grid.Row="3" Click="Button_Click" Content="Pörget" Background="#FF222831" BorderBrush="#FF00ADB5" Foreground="White"></Button>
+        <Button x:Name="btnPorget" Width="200" Height="50" Grid.Row="3" Click="Button_Click" Content="Pörget" Background="#FF222831" BorderBrush="#FF00ADB5" Foreground="White"/>
     </Grid>
 </Window>

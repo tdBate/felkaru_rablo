@@ -18,16 +18,27 @@ namespace felkaru_rablo
     /// </summary>
     public partial class MainWindow : Window
     {
+        bool test_mode = true; // itt lehet a tesztelést ki-be kapcsolni
+
         Random rnd = new Random();
-        
-        string[] szimbulomok = {"Cseresznye", "Banan", "Barack", "Dinnye"};
+
+        string[] szimbulomok = {
+                "Cseresznye", "Banan", "Barack", "Dinnye", "Alma",
+                "Eper", "Szolo", "Citrom", "Narancs", "Ananasz"
+            };
 
         Dictionary<string, string> gyumolcsEmojik = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
             { "Cseresznye", "🍒" },
-            { "Banan",       "🍌" },
-            { "Barack",      "🍑" },
-            { "Dinnye",      "🍉" }
+                { "Banan",       "🍌" },
+                { "Barack",      "🍑" },
+                { "Dinnye",      "🍉" },
+                { "Alma",        "🍎" },
+                { "Eper",        "🍓" },
+                { "Szolo",       "🍇" },
+                { "Citrom",      "🍋" },
+                { "Narancs",     "🍊" },
+                { "Ananasz",     "🍍" }
         };
 
 
@@ -36,7 +47,7 @@ namespace felkaru_rablo
         int nyertesIndex;
         bool porges = true;
         string[] eredmenyek;
-        int penz = 0;
+        int penz = 100;
 
         public MainWindow()
         {
@@ -45,6 +56,10 @@ namespace felkaru_rablo
 
         public string RandomGyumolcs() 
         {
+            if (test_mode == true) 
+            {
+                return szimbulomok[rnd.Next(0, 4)];
+            }
             return szimbulomok[rnd.Next(0, szimbulomok.Length)];
         }
 
@@ -63,6 +78,10 @@ namespace felkaru_rablo
 
         public void TarcsaSetup()
         {
+            btnPorget.Click -= Button_Click;
+
+            penz -= 10;
+            lblPenz.Content = "Pénz: " + penz;
             nyertesIndex = rnd.Next(10, elemekSzama);
             eredmenyek = new string[cellakSzama];
 
@@ -76,10 +95,10 @@ namespace felkaru_rablo
                 tarcsa.RowDefinitions.Add(r1);
             }
 
-            
+            Canvas.SetLeft(tarcsa, this.Width / 2 - tarcsa.Width / 2);
             for (int j = 0; j < elemekSzama; j++)
             {
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < cellakSzama; i++)
                 {
                     string gyumolcs = RandomGyumolcs();
 
@@ -98,9 +117,6 @@ namespace felkaru_rablo
                     Grid.SetColumn(kep, i);
                     Grid.SetRow(kep, j);
                     tarcsa.Children.Add(kep);
-
-                    Canvas.SetLeft(tarcsa, this.Width / 2-tarcsa.Width/2);
-
                 }
             }
 
@@ -125,6 +141,7 @@ namespace felkaru_rablo
                 await Task.Delay(10);
             }
             PenzHozzaad(Ellenoriz());
+            btnPorget.Click += Button_Click;
         }
 
 
@@ -144,10 +161,26 @@ namespace felkaru_rablo
             penz += osszeg;   
 
             lblPenz.Content = "Pénz: "+penz;
+
+            if (osszeg > 0)
+            {
+                MessageBox.Show("Nyertél " + osszeg + " pénzt!", "Nyertél");
+            }
+            else 
+            {
+                MessageBox.Show("Nem nyertél semmit, próbáld újra!", "Vesztettél");
+            }
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if(penz < 10) 
+            {
+                MessageBox.Show("Nincs elég pénzed a játékhoz!","Nincs pénz");
+                return;
+            }
+
             TarcsaSetup();
             PorgetAnimacio();
         }
